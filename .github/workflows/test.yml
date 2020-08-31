@@ -15,4 +15,6 @@ jobs:
         with:
           go-version: ${{ matrix.go }}
       - run: go mod download
-      - run: go test -race ./...
+      - run: |
+        cd codegen/config
+        go test -v

@@ -2,6 +2,7 @@ package code
 
 import (
 	"bytes"
+	"fmt"
 	"path/filepath"
 
 	"github.com/pkg/errors"
@@ -43,7 +44,9 @@ func (p *Packages) LoadAll(importPaths ...string) []*packages.Package {
 
 	if len(missing) > 0 {
 		p.numLoadCalls++
+		fmt.Println("->", missing)
 		pkgs, err := packages.Load(&packages.Config{Mode: mode}, missing...)
+		fmt.Println("--->", pkgs, err)
 		if err != nil {
 			p.loadErrors = append(p.loadErrors, err)
 		}
