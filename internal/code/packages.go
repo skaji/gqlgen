@@ -52,6 +52,7 @@ func (p *Packages) LoadAll(importPaths ...string) []*packages.Package {
 		}
 
 		for _, pkg := range pkgs {
+			fmt.Printf("-----> %#v\n", pkg)
 			p.addToCache(pkg)
 		}
 	}
