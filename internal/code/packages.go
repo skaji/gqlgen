@@ -49,6 +49,12 @@ func (p *Packages) LoadAll(importPaths ...string) []*packages.Package {
 		}
 
 		for _, pkg := range pkgs {
+			if len(pkg.Errors) > 0 {
+				for _, err := range pkg.Errors {
+					p.loadErrors = append(p.loadErrors, err)
+				}
+				continue
+			}
 			p.addToCache(pkg)
 		}
 	}
